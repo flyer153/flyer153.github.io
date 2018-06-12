@@ -1,0 +1,328 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>[译]视窗meta标签(移动开发1) | Flyer&#39;s blog</title>
+  <meta name="author" content="Flyer">
+  
+  <meta name="description" content="原文: The Viewport Metatag (Mobile Web Part 1)
+如翻译有误，请与我联系。谢谢！
+html代码1&amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;/&amp;gt;
+##介绍
+这一系列的文章旨在介绍web开发人员基本的移动开发知识，在阅读以下文章时，你必须具备基础得web开发知识。
+##问题
+ok，接下来利用你当前学到的web知识写一个基本的网页，运行在移动端下。基本的html代码如下：123456789&amp;lt;!doctype html&amp;gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;title&amp;gt;Hello world!&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&amp;lt;p&amp;gt;Hello world!&amp;lt;/p&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;
+以上是一个基本的html网页，你在web端用浏览器打开，发现没有任何兼容性问题。但如果你在移动端打开，会发现文字很小，在移动端无法适配。
+这就是本文要讲的第一课：宽度是多么坑爹。这是你在接下来的学习中遇到的无数问题中的第一个，设备的宽度。
+仔细想想，似乎这样显示也有道理：在iphone下用Safari浏览一下页面，因为它是专门为web端而写的文件头，所以，它在iphone下缩小为980以适配iphone的屏幕，这就是为什么网页上的内容可读性差的原因，除非你放大页面。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="[译]视窗meta标签(移动开发1)"/>
+  <meta property="og:site_name" content="Flyer&#39;s blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Flyer&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header"><div class="inner">
+<div class="alignleft">
+  <h1><a href="/">Flyer&#39;s blog</a></h1>
+  <h2>Fun Loving Youth En Route to Success</h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/linkurl">工具链接</a></li>
+    
+      <li><a href="/about">关于我</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+</div>
+
+</header>
+  <div ui-butterbar="" class="butterbar active"><span class="bar"></span></div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-04-08T10:27:08.000Z"><a href="/2015/04/08/wapdev-viewport-metatag/">2015-04-08</a></time>
+      
+      
+  
+    <h1 class="title">[译]视窗meta标签(移动开发1)</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>原文: <a href="http://davidbcalhoun.com/2010/viewport-metatag/" target="_blank" rel="external">The Viewport Metatag (Mobile Web Part 1)</a></p>
+<p>如翻译有误，请与我联系。谢谢！</p>
+<p>html代码<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
+<p>##介绍</p>
+<p>这一系列的文章旨在介绍web开发人员基本的移动开发知识，在阅读以下文章时，你必须具备基础得web开发知识。</p>
+<p>##问题</p>
+<p>ok，接下来利用你当前学到的web知识写一个基本的网页，运行在移动端下。基本的html代码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello world!<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello world!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>以上是一个基本的html网页，你在web端用浏览器打开，发现没有任何兼容性问题。但如果你在移动端打开，会<br>发现文字很小，在移动端无法适配。</p>
+<p>这就是本文要讲的第一课：宽度是多么坑爹。这是你在接下来的学习中遇到的无数问题中的第一个，设备的宽度。</p>
+<p>仔细想想，似乎这样显示也有道理：在iphone下用Safari浏览一下页面，因为它是专门为web端而写的文件头，所<br>以，它在iphone下缩小为980以适配iphone的屏幕，这就是为什么网页上的内容可读性差的原因，除非你放大页面。<br><a id="more"></a></p>
+<p> ##视窗</p>
+<p> 但是它并不糟糕，接下来我需要做的是告诉大家，以下这个网页是为移动端的浏览器优化的，这里就是我们说的<br> 视窗meta标签。<br> 现在微调一下html：<br> <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> <span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello world!<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello world!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>通过设置视窗宽度等于device-width（设备宽度），现在在移动端打开页面看起来就好得多，我们只是告诉它设备宽度为<br>320px，980px并非默认值，如果我们设置width=320px;便可兼容iphone和其他所有智能手机。但并非所有的手机都是这个<br>宽度。因此最好设置视窗宽度，让手机浏览器计算出来。</p>
+<p>视窗meta标签支持多种智能手机。从iphone到Android到webOS甚至移动浏览器，opera Mini和opera Mobile。</p>
+<p>至此我们所说的标准视窗类似于这样。从m.yahoo.com看一下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
+<p>附注：这一定义的原因貌似是防止用户缩放网页（挤压缩放功能），所以这一版本的标签是允许用户挤压缩放。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
+<p> ##关于视窗标签的扩展：</p>
+<p>除了内容宽度解决了我们最大的困扰外，视窗标签还有更多的可选项：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>width</td>
+<td>视窗宽度（或设备宽度）。如果未定义，则默认为桌面大小（在mobile Safari浏览器中980px）   </td>
+</tr>
+<tr>
+<td>height</td>
+<td>视窗高度（或设备高度）。通常无须设置</td>
+</tr>
+<tr>
+<td>initial-scale</td>
+<td>（0-10.0）倍数，用于设置页面显示之后的初始值，通常：如果需要设置，将它设置为1.0，值越大 = zoomed in(放大)，值越小= zoomed out(缩小)</td>
+</tr>
+<tr>
+<td>minimum-scale</td>
+<td>（0-10.0）的最小倍数，用户可以zoomed out，默认在mobile safari下为0.25 </td>
+</tr>
+<tr>
+<td>maximum-scale</td>
+<td>（0-10.0）的最小倍数，用户可以zoomed in，默认在mobile safari下为1.6   </td>
+</tr>
+<tr>
+<td>user-scalable</td>
+<td>（是/否）是否允许用户缩放/缩小(zooming in/out)，默认在mobile safari下为是</td>
+</tr>
+</tbody>
+</table>
+<p> ##智能手机：当视窗不可用时…</p>
+<p>由于视窗标签较新，所以还未普遍支持，特别是如果你正在使用较老的智能手机。但也有一些较老的方法针对于老</p>
+<p> ##针对智能手机进行优化：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"HandheldFriendly"</span> <span class="attr">content</span>=<span class="string">"true"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
+<p>这个标签原本是用来识别移动AvantGo浏览器中的内容。现在它已经被用来识别移动web站点的通用标准。但是具体<br>支持meta标签的范围程度要视浏览器而定。<br>在此处的另一个标签是windows特有的meta标签，最终用来识别移动内容的另一种手段，但此标签的缺点是，必须<br>指定特定宽度，这就使视窗标签没那么灵活(见上文)，并且，这个标签还未得到普遍支持。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"MobileOptimized"</span> <span class="attr">content</span>=<span class="string">"320"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
+<p>最后，你的站点就是针对移动优化过的，如果你的doctype是介于 XHTML-MP 或 WML两者之一。然而，这种情况非常<br>稀少，现代的浏览器已经很好的支持旧的HTML4.01 和 HTML5+。<br>(此信息部分来自于智能手机web开发)</p>
+<p>##定制的Android特性：</p>
+<p>官方Android文件列出了一个特殊的属性，他们已经加入meta标签：target-densitydpi。这个属性基本上允许开发者指定屏幕分辨率的页面进行开发，或者更具体的解决如何处理媒体的缩放和图像。</p>
+<p>以下是关于这个标签的示例：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"target-densitydpi=device-dpi"</span> /&gt;</span></div></pre></td></tr></table></figure></p>
+<p>##参考</p>
+<p>Safari浏览器HTML参考：支持Meta标签<br>移动META标签</p>
+
+      
+    </div>
+    
+  </div>
+  <div class="article-more-link">
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/wap-dev/">wap dev</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/wap/">wap</a>
+  </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+</article>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Buscar">
+    <input type="hidden" name="q" value="site:www.iciniao.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categorías</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Git/">Git</a><small>1</small></li>
+  
+    <li><a href="/categories/design/">design</a><small>1</small></li>
+  
+    <li><a href="/categories/html5-css3/">html5+css3</a><small>4</small></li>
+  
+    <li><a href="/categories/javascript/">javascript</a><small>4</small></li>
+  
+    <li><a href="/categories/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/categories/other/">other</a><small>1</small></li>
+  
+    <li><a href="/categories/wap-dev/">wap dev</a><small>2</small></li>
+  
+    <li><a href="/categories/工具/">工具</a><small>2</small></li>
+  
+    <li><a href="/categories/移动端H5/">移动端H5</a><small>1</small></li>
+  
+    <li><a href="/categories/管理/">管理</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Etiquetas</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Git/">Git</a><small>1</small></li>
+  
+    <li><a href="/tags/apply-call/">apply call</a><small>1</small></li>
+  
+    <li><a href="/tags/css3/">css3</a><small>1</small></li>
+  
+    <li><a href="/tags/hg/">hg</a><small>1</small></li>
+  
+    <li><a href="/tags/html5/">html5</a><small>3</small></li>
+  
+    <li><a href="/tags/nodejs包管理器/">nodejs包管理器</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>1</small></li>
+  
+    <li><a href="/tags/ui-design/">ui design</a><small>1</small></li>
+  
+    <li><a href="/tags/wap/">wap</a><small>2</small></li>
+  
+    <li><a href="/tags/原型链/">原型链</a><small>1</small></li>
+  
+    <li><a href="/tags/团队管理/">团队管理</a><small>1</small></li>
+  
+    <li><a href="/tags/字符串/">字符串</a><small>1</small></li>
+  
+    <li><a href="/tags/性能优化/">性能优化</a><small>1</small></li>
+  
+    <li><a href="/tags/总结/">总结</a><small>1</small></li>
+  
+    <li><a href="/tags/闭包/">闭包</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer><div id="footer" >
+	
+  <div class="outer">
+    <div id="footer-info" class="inner">
+		<nav class="footer-nav">
+			<ul>
+				
+				<li><a href="/">首页</a></li>
+				
+				<li><a href="/archives">归档</a></li>
+				
+				<li><a href="/linkurl">工具链接</a></li>
+				
+				<li><a href="/about">关于我</a></li>
+				
+			</ul>
+		</nav>	
+    </div>
+  </div>
+</div>
+<div class="footer-bottom"><p class="inner">&copy; 2018 Flyer&nbsp;&nbsp;&nbsp;&nbsp;Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p></div>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fff696ce447973fff9b0046bef6fb820";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</footer>
+  <script src="/js/jquery-2.1.0.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  //back to top
+  function backToTop(){
+    var buttonHTML = $("<a href=\"#top\" id=\"back-top\">" + "<span>Back to Top</span></a>");
+    buttonHTML.appendTo($("body"));
+    var buttonToTop = $("#back-top");
+    // hide #back-top first
+    buttonToTop.hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                buttonToTop.fadeIn();
+            } else {
+                buttonToTop.fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        buttonToTop.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  }
+  backToTop();
+
+  });
+
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

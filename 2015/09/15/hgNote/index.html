@@ -1,0 +1,271 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hg 常用命令 | Flyer&#39;s blog</title>
+  <meta name="author" content="Flyer">
+  
+  <meta name="description" content="公司使用hg作为代码管理工具，第一次接触这个工具，一开始使用非常不习惯。一段时间下来发现hg和git的使用有很多相似之处。以下整理一些hg的安装配置以及常用的hg的使用命令，作为备忘。
+####（小乌龟）安装
+windows和mac：http://tortoisehg.bitbucket.org/命令行：http://mercurial.selenic.com/
+kdiff安装kdiff3: http://sourceforge.net/projects/kdiff3/
+####Mercurial配置
+windows: C:\Users[user]\下创建一个.hgrc的文件Linux/Mac: 在主目录创建一个.hgrc做为配置文件写入以下内容：123456789101112131415161718192021[ui]username = ***merge = kdiff3[extensions] hgext.extdiff =[auth]repo.prefix = urlrepo.username = ***repo.password = ******[hostfingerprints]url = F0:2B:9B:39:2F:06:82:D1:F8:FF:A2:64:82:A6:78:B4:66:A1:C9:61[tortoisehg] vdiff = kdiff3[extdiff]#cmd.kdiff3 = /opt/local/bin/kdiff3#cmd.kdiff3 = /Applications/kdiff3.app/Contents/MacOS/kdiff3[merge-tools]kdiff3.args = $base $local $other -o $output">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Hg 常用命令"/>
+  <meta property="og:site_name" content="Flyer&#39;s blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Flyer&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header"><div class="inner">
+<div class="alignleft">
+  <h1><a href="/">Flyer&#39;s blog</a></h1>
+  <h2>Fun Loving Youth En Route to Success</h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/linkurl">工具链接</a></li>
+    
+      <li><a href="/about">关于我</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+</div>
+
+</header>
+  <div ui-butterbar="" class="butterbar active"><span class="bar"></span></div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-09-15T01:56:52.000Z"><a href="/2015/09/15/hgNote/">2015-09-15</a></time>
+      
+      
+  
+    <h1 class="title">Hg 常用命令</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>公司使用hg作为代码管理工具，第一次接触这个工具，一开始使用非常不习惯。一段时间下来发现hg和git的使用有很多相似之处。<br>以下整理一些hg的安装配置以及常用的hg的使用命令，作为备忘。</p>
+<p>####（小乌龟）安装</p>
+<p>windows和mac：<a href="http://tortoisehg.bitbucket.org/" target="_blank" rel="external">http://tortoisehg.bitbucket.org/</a><br>命令行：<a href="http://mercurial.selenic.com/" target="_blank" rel="external">http://mercurial.selenic.com/</a></p>
+<h4 id="kdiff安装"><a href="#kdiff安装" class="headerlink" title="kdiff安装"></a>kdiff安装</h4><p>kdiff3: <a href="http://sourceforge.net/projects/kdiff3/" target="_blank" rel="external">http://sourceforge.net/projects/kdiff3/</a></p>
+<p>####Mercurial配置</p>
+<p>windows: C:\Users[user]\下创建一个.hgrc的文件<br>Linux/Mac: 在主目录创建一个.hgrc做为配置文件<br>写入以下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">[ui]</div><div class="line">username = ***</div><div class="line">merge = kdiff3</div><div class="line"></div><div class="line">[extensions] hgext.extdiff =</div><div class="line"></div><div class="line">[auth]</div><div class="line">repo.prefix = url</div><div class="line">repo.username = ***</div><div class="line">repo.password = ******</div><div class="line"></div><div class="line">[hostfingerprints]</div><div class="line">url = F0:2B:9B:39:2F:06:82:D1:F8:FF:A2:64:82:A6:78:B4:66:A1:C9:61</div><div class="line"></div><div class="line">[tortoisehg] vdiff = kdiff3</div><div class="line"></div><div class="line">[extdiff]</div><div class="line">#cmd.kdiff3 = /opt/local/bin/kdiff3</div><div class="line">#cmd.kdiff3 = /Applications/kdiff3.app/Contents/MacOS/kdiff3</div><div class="line">[merge-tools]</div><div class="line">kdiff3.args = $base $local $other -o $output</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>####常用命令<br>hg clone +url               克隆仓库<br>hg branch                   查看当先在哪个分支<br>hg branch +分支名            创建新分支<br>hg ci -m “注释”              提交本地修改<br>hg push –new-branch        提交分支<br>hg push -f                  强推（慎用）<br>hg pull  +url               拉别人的分支<br>hg merge                    合并对方的代码到自己的分支中<br>hg head                     查看提交的记录信息<br>hg outgoing                 查看要推送的代码，但不执行推送操作<br>hg merge  +分支名            合并分支<br>hg up                       将代码修改更新default上<br>hg up -C                    放弃本地未提交的更改<br>hg st | grep M              看改了哪些文件<br>hg branches|grep +名字（zb） 看所有的分支名<br>hg st                       查看项目的一些修改状态<br>hg add                      添加将要合并的文件<br>hg remove +文件名            删除文件。<br>hg resolve –mark           解决文件冲突<br>hg rollback                 回退版本</p>
+<p>大概常用的命令就这么多，后续如有需要会继续更新。。</p>
+
+      
+    </div>
+    
+  </div>
+  <div class="article-more-link">
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/工具/">工具</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/hg/">hg</a>
+  </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+</article>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Buscar">
+    <input type="hidden" name="q" value="site:www.iciniao.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categorías</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Git/">Git</a><small>1</small></li>
+  
+    <li><a href="/categories/design/">design</a><small>1</small></li>
+  
+    <li><a href="/categories/html5-css3/">html5+css3</a><small>4</small></li>
+  
+    <li><a href="/categories/javascript/">javascript</a><small>4</small></li>
+  
+    <li><a href="/categories/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/categories/other/">other</a><small>1</small></li>
+  
+    <li><a href="/categories/wap-dev/">wap dev</a><small>2</small></li>
+  
+    <li><a href="/categories/工具/">工具</a><small>2</small></li>
+  
+    <li><a href="/categories/移动端H5/">移动端H5</a><small>1</small></li>
+  
+    <li><a href="/categories/管理/">管理</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Etiquetas</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Git/">Git</a><small>1</small></li>
+  
+    <li><a href="/tags/apply-call/">apply call</a><small>1</small></li>
+  
+    <li><a href="/tags/css3/">css3</a><small>1</small></li>
+  
+    <li><a href="/tags/hg/">hg</a><small>1</small></li>
+  
+    <li><a href="/tags/html5/">html5</a><small>3</small></li>
+  
+    <li><a href="/tags/nodejs包管理器/">nodejs包管理器</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>1</small></li>
+  
+    <li><a href="/tags/ui-design/">ui design</a><small>1</small></li>
+  
+    <li><a href="/tags/wap/">wap</a><small>2</small></li>
+  
+    <li><a href="/tags/原型链/">原型链</a><small>1</small></li>
+  
+    <li><a href="/tags/团队管理/">团队管理</a><small>1</small></li>
+  
+    <li><a href="/tags/字符串/">字符串</a><small>1</small></li>
+  
+    <li><a href="/tags/性能优化/">性能优化</a><small>1</small></li>
+  
+    <li><a href="/tags/总结/">总结</a><small>1</small></li>
+  
+    <li><a href="/tags/闭包/">闭包</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer><div id="footer" >
+	
+  <div class="outer">
+    <div id="footer-info" class="inner">
+		<nav class="footer-nav">
+			<ul>
+				
+				<li><a href="/">首页</a></li>
+				
+				<li><a href="/archives">归档</a></li>
+				
+				<li><a href="/linkurl">工具链接</a></li>
+				
+				<li><a href="/about">关于我</a></li>
+				
+			</ul>
+		</nav>	
+    </div>
+  </div>
+</div>
+<div class="footer-bottom"><p class="inner">&copy; 2018 Flyer&nbsp;&nbsp;&nbsp;&nbsp;Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p></div>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fff696ce447973fff9b0046bef6fb820";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</footer>
+  <script src="/js/jquery-2.1.0.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  //back to top
+  function backToTop(){
+    var buttonHTML = $("<a href=\"#top\" id=\"back-top\">" + "<span>Back to Top</span></a>");
+    buttonHTML.appendTo($("body"));
+    var buttonToTop = $("#back-top");
+    // hide #back-top first
+    buttonToTop.hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                buttonToTop.fadeIn();
+            } else {
+                buttonToTop.fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        buttonToTop.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  }
+  backToTop();
+
+  });
+
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

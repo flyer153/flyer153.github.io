@@ -1,0 +1,272 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>表单及其他 | Flyer&#39;s blog</title>
+  <meta name="author" content="Flyer">
+  
+  <meta name="description" content="1.表单内的从属元素    可以写在页面上的任何地方。只需要为该元素指定一个form属性，属性值为表单的id。2.formaction  单击不同按钮可以提交到不同页面3.formmethod     对每个表单元素指定不同的提交方式4.formenctype 对表单的数据解码5.formtarget 对多个按钮提交后在何处打开所需加载的页面6.autofoucs 自动获得光标7.required 如果元素中内容空白，显示提示内容，不允许提交123456789101112131415161718192021222324252627282930&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;labels属性的使用示例&amp;lt;/title&amp;gt;&amp;lt;meta charset=&quot;UTF-8&quot;&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;script type=&quot;text/javascript&quot;&amp;gt;function Validate()&amp;#123;    var txtName=document.getElementById(&quot;txt_name&quot;);     var button=document.getElementById(&quot;btnValidate&quot;);    var form=document.getElementById(&quot;testform&quot;);    if(txtName.value.trim()==&quot;&quot;)&amp;#123;        if(txtName.labels.length==1)        &amp;#123;            var label=document.createElement(&quot;label&quot;);            label.setAttribute(&quot;for&quot;,&quot;txt_name&quot;);            form.insertBefore(label,button);             txtName.labels[1].innerHTML=&quot;请输入姓名&quot;;            txtName.labels[1].setAttribute(            &quot;style&quot;,&quot;font-size:9px;color:red&quot;);        &amp;#125;          &amp;#125;   else if(txtName.labels.length&amp;gt;1)       form.removeChild(txtName.labels[1]);&amp;#125;&amp;lt;/script&amp;gt;&amp;lt;form  id=&quot;testform&quot;&amp;gt;&amp;lt;label id=&quot;label&quot; for=&quot;txt_name&quot;&amp;gt;姓名:&amp;lt;/label&amp;gt;&amp;lt;input id=&quot;txt_name&quot;&amp;gt;&amp;lt;input type=&quot;button&quot; id=&quot;btnValidate&quot; value=&quot;验证&quot;  onclick=&quot;Validate()&quot;/&amp;gt;&amp;lt;/form&amp;gt;">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="表单及其他"/>
+  <meta property="og:site_name" content="Flyer&#39;s blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Flyer&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header"><div class="inner">
+<div class="alignleft">
+  <h1><a href="/">Flyer&#39;s blog</a></h1>
+  <h2>Fun Loving Youth En Route to Success</h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/linkurl">工具链接</a></li>
+    
+      <li><a href="/about">关于我</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+</div>
+
+</header>
+  <div ui-butterbar="" class="butterbar active"><span class="bar"></span></div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-27T09:54:47.000Z"><a href="/2014/11/27/formAndOther/">2014-11-27</a></time>
+      
+      
+  
+    <h1 class="title">表单及其他</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong>1.表单内的从属元素</strong>    可以写在页面上的任何地方。只需要为该元素指定一个form属性，属性值为表单的id。<br><strong>2.formaction</strong>  单击不同按钮可以提交到不同页面<br><strong>3.formmethod</strong>     对每个表单元素指定不同的提交方式<br><strong>4.formenctype</strong> 对表单的数据解码<br><strong>5.formtarget</strong> 对多个按钮提交后在何处打开所需加载的页面<br><strong>6.autofoucs</strong> 自动获得光标<br><strong>7.required</strong> 如果元素中内容空白，显示提示内容，不允许提交<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>labels属性的使用示例<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Validate</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> txtName=<span class="built_in">document</span>.getElementById(<span class="string">"txt_name"</span>); </div><div class="line">    <span class="keyword">var</span> button=<span class="built_in">document</span>.getElementById(<span class="string">"btnValidate"</span>);</div><div class="line">    <span class="keyword">var</span> form=<span class="built_in">document</span>.getElementById(<span class="string">"testform"</span>);</div><div class="line">    <span class="keyword">if</span>(txtName.value.trim()==<span class="string">""</span>)&#123;</div><div class="line">        <span class="keyword">if</span>(txtName.labels.length==<span class="number">1</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">var</span> label=<span class="built_in">document</span>.createElement(<span class="string">"label"</span>);</div><div class="line">            label.setAttribute(<span class="string">"for"</span>,<span class="string">"txt_name"</span>);</div><div class="line">            form.insertBefore(label,button); </div><div class="line">            txtName.labels[<span class="number">1</span>].innerHTML=<span class="string">"请输入姓名"</span>;</div><div class="line">            txtName.labels[<span class="number">1</span>].setAttribute(</div><div class="line">            <span class="string">"style"</span>,<span class="string">"font-size:9px;color:red"</span>);</div><div class="line">        &#125;       </div><div class="line">   &#125;</div><div class="line">   <span class="keyword">else</span> <span class="keyword">if</span>(txtName.labels.length&gt;<span class="number">1</span>)</div><div class="line">       form.removeChild(txtName.labels[<span class="number">1</span>]);</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span>  <span class="attr">id</span>=<span class="string">"testform"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">id</span>=<span class="string">"label"</span> <span class="attr">for</span>=<span class="string">"txt_name"</span>&gt;</span>姓名:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"txt_name"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btnValidate"</span> <span class="attr">value</span>=<span class="string">"验证"</span>  <span class="attr">onclick</span>=<span class="string">"Validate()"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p><strong>8.label</strong> 如果元素中内容空白，显示提示内容，不允许提交<br><strong>9.control</strong> 在label内部中表单元素的control来访问表单元素<br><strong>10.placeholder</strong> 模糊显示提示文字<br><strong>11.list</strong>  类似于选择框。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>list属性示例<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">text：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"greeting"</span> <span class="attr">list</span>=<span class="string">"greetings"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--使用style="display:none;"将detalist元素设定为不显示--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">datalist</span> <span class="attr">id</span>=<span class="string">"greetings"</span> <span class="attr">style</span>=<span class="string">"display: none;"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"Good Morning"</span>&gt;</span>Good Morning<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"Hello"</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"Good Afternoon"</span>&gt;</span>Good Afternoon<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">datalist</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>12.autocomplete</strong> 自动完成<br><strong>13.pattern</strong> 正则</p>
+<pre><code class="html"><span class="tag">&lt;<span class="name">form</span>&gt;</span>
+内容：<span class="tag">&lt;<span class="name">input</span> <span class="attr">pattern</span>=<span class="string">"[0-9][A-Z]{3}"</span><span class="attr">name</span>=<span class="string">part</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">form</span>&gt;</span>
+</code></pre>
+<p><strong>14.SelectionDirection</strong> 针对input和textarea选取文字可以获取选取方向。forward backward<br><strong>15.复选框的indeterminate</strong> 增加了尚未明确是否选取<br><strong>16.textarea元素的maxlength属性与wrap属性</strong> </p>
+<blockquote>
+<ul>
+<li>maxlength限定输入字数</li>
+<li>wrap是否换行 soft hard（必须制定cols属性值）</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  <div class="article-more-link">
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/html5-css3/">html5+css3</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/html5/">html5</a>
+  </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+</article>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Buscar">
+    <input type="hidden" name="q" value="site:www.iciniao.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categorías</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Git/">Git</a><small>1</small></li>
+  
+    <li><a href="/categories/design/">design</a><small>1</small></li>
+  
+    <li><a href="/categories/html5-css3/">html5+css3</a><small>4</small></li>
+  
+    <li><a href="/categories/javascript/">javascript</a><small>4</small></li>
+  
+    <li><a href="/categories/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/categories/other/">other</a><small>1</small></li>
+  
+    <li><a href="/categories/wap-dev/">wap dev</a><small>2</small></li>
+  
+    <li><a href="/categories/工具/">工具</a><small>2</small></li>
+  
+    <li><a href="/categories/移动端H5/">移动端H5</a><small>1</small></li>
+  
+    <li><a href="/categories/管理/">管理</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Etiquetas</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Git/">Git</a><small>1</small></li>
+  
+    <li><a href="/tags/apply-call/">apply call</a><small>1</small></li>
+  
+    <li><a href="/tags/css3/">css3</a><small>1</small></li>
+  
+    <li><a href="/tags/hg/">hg</a><small>1</small></li>
+  
+    <li><a href="/tags/html5/">html5</a><small>3</small></li>
+  
+    <li><a href="/tags/nodejs包管理器/">nodejs包管理器</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>1</small></li>
+  
+    <li><a href="/tags/ui-design/">ui design</a><small>1</small></li>
+  
+    <li><a href="/tags/wap/">wap</a><small>2</small></li>
+  
+    <li><a href="/tags/原型链/">原型链</a><small>1</small></li>
+  
+    <li><a href="/tags/团队管理/">团队管理</a><small>1</small></li>
+  
+    <li><a href="/tags/字符串/">字符串</a><small>1</small></li>
+  
+    <li><a href="/tags/性能优化/">性能优化</a><small>1</small></li>
+  
+    <li><a href="/tags/总结/">总结</a><small>1</small></li>
+  
+    <li><a href="/tags/闭包/">闭包</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer><div id="footer" >
+	
+  <div class="outer">
+    <div id="footer-info" class="inner">
+		<nav class="footer-nav">
+			<ul>
+				
+				<li><a href="/">首页</a></li>
+				
+				<li><a href="/archives">归档</a></li>
+				
+				<li><a href="/linkurl">工具链接</a></li>
+				
+				<li><a href="/about">关于我</a></li>
+				
+			</ul>
+		</nav>	
+    </div>
+  </div>
+</div>
+<div class="footer-bottom"><p class="inner">&copy; 2018 Flyer&nbsp;&nbsp;&nbsp;&nbsp;Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p></div>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fff696ce447973fff9b0046bef6fb820";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</footer>
+  <script src="/js/jquery-2.1.0.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  //back to top
+  function backToTop(){
+    var buttonHTML = $("<a href=\"#top\" id=\"back-top\">" + "<span>Back to Top</span></a>");
+    buttonHTML.appendTo($("body"));
+    var buttonToTop = $("#back-top");
+    // hide #back-top first
+    buttonToTop.hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                buttonToTop.fadeIn();
+            } else {
+                buttonToTop.fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        buttonToTop.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  }
+  backToTop();
+
+  });
+
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

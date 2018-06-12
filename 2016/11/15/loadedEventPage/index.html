@@ -1,0 +1,262 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>客户端通过WebView监控H5页面时需要用到的各项数据的js获取方法 | Flyer&#39;s blog</title>
+  <meta name="author" content="Flyer">
+  
+  <meta name="description" content="以下是客户端通过WebView监控H5页面时需要用到的各项数据的js获取方法
+  
+1234567891011121314151617181920212223242526272829303132var time = performance.timing;//白屏时间var loadedEventTi">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="客户端通过WebView监控H5页面时需要用到的各项数据的js获取方法"/>
+  <meta property="og:site_name" content="Flyer&#39;s blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Flyer&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header"><div class="inner">
+<div class="alignleft">
+  <h1><a href="/">Flyer&#39;s blog</a></h1>
+  <h2>Fun Loving Youth En Route to Success</h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/linkurl">工具链接</a></li>
+    
+      <li><a href="/about">关于我</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+</div>
+
+</header>
+  <div ui-butterbar="" class="butterbar active"><span class="bar"></span></div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-11-15T04:11:13.000Z"><a href="/2016/11/15/loadedEventPage/">2016-11-15</a></time>
+      
+      
+  
+    <h1 class="title">客户端通过WebView监控H5页面时需要用到的各项数据的js获取方法</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>以下是客户端通过WebView监控H5页面时需要用到的各项数据的js获取方法</p>
+<p> <img src="/img/image2016-11-4 12-50-55.png" alt=""><br> <img src="/img/image2016-11-4 13-7-50.png" alt=""></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> time = performance.timing;</div><div class="line"><span class="comment">//白屏时间</span></div><div class="line"><span class="keyword">var</span> loadedEventTime = time.domContentLoadedEventEnd-time.navigationStart;</div><div class="line"><span class="built_in">console</span>.log(loadedEventTime);</div><div class="line"><span class="comment">//计算DOMContentLoaded触发时间</span></div><div class="line"><span class="keyword">var</span> contentLoadedTime = time.domContentLoadedEventStart-time.domLoading;</div><div class="line"><span class="built_in">console</span>.log(contentLoadedTime);</div><div class="line"><span class="comment">//计算load触发时间</span></div><div class="line"><span class="keyword">var</span> loadTime = time.domComplete - time.domLoading;</div><div class="line"><span class="built_in">console</span>.log(loadTime);</div><div class="line"><span class="comment">//获得重定向时间</span></div><div class="line"><span class="keyword">var</span> redirectTime = time.redirectEnd - time.redirectStart; <span class="comment">//单位为微秒</span></div><div class="line"><span class="built_in">console</span>.log(redirectTime);</div><div class="line"><span class="comment">//DNS解析时间</span></div><div class="line"><span class="keyword">var</span> domainLookupTime = time.domainLookupEnd - time.domainLookupStart;</div><div class="line"><span class="built_in">console</span>.log(domainLookupTime);</div><div class="line"><span class="comment">//整个DNS解析时间</span></div><div class="line"><span class="keyword">var</span> lookupTime = time.responseEnd - time.fetchStart;</div><div class="line"><span class="built_in">console</span>.log(lookupTime);</div><div class="line"><span class="comment">//TCP链接时间</span></div><div class="line"><span class="keyword">var</span> tcpConnectTime = time.connectEnd - time.connectStart;</div><div class="line"><span class="built_in">console</span>.log(tcpConnectTime);</div><div class="line"><span class="comment">//request请求时间</span></div><div class="line"><span class="keyword">var</span> requestTime = time.responseStart - time.requestStart;</div><div class="line"><span class="built_in">console</span>.log(requestTime);</div><div class="line"><span class="comment">//response响应时间</span></div><div class="line"><span class="keyword">var</span> responseTime = time.responseEnd - time.responseStart;</div><div class="line"><span class="built_in">console</span>.log(responseTime);</div><div class="line"><span class="comment">//DOM节点时间</span></div><div class="line"><span class="keyword">var</span> domLoadTime = time.domContentLoadedEventEnd - time.domLoading;</div><div class="line"><span class="built_in">console</span>.log(domLoadTime);</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  <div class="article-more-link">
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/移动端H5/">移动端H5</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/性能优化/">性能优化</a>
+  </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+</article>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Buscar">
+    <input type="hidden" name="q" value="site:www.iciniao.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categorías</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Git/">Git</a><small>1</small></li>
+  
+    <li><a href="/categories/design/">design</a><small>1</small></li>
+  
+    <li><a href="/categories/html5-css3/">html5+css3</a><small>4</small></li>
+  
+    <li><a href="/categories/javascript/">javascript</a><small>4</small></li>
+  
+    <li><a href="/categories/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/categories/other/">other</a><small>1</small></li>
+  
+    <li><a href="/categories/wap-dev/">wap dev</a><small>2</small></li>
+  
+    <li><a href="/categories/工具/">工具</a><small>2</small></li>
+  
+    <li><a href="/categories/移动端H5/">移动端H5</a><small>1</small></li>
+  
+    <li><a href="/categories/管理/">管理</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Etiquetas</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Git/">Git</a><small>1</small></li>
+  
+    <li><a href="/tags/apply-call/">apply call</a><small>1</small></li>
+  
+    <li><a href="/tags/css3/">css3</a><small>1</small></li>
+  
+    <li><a href="/tags/hg/">hg</a><small>1</small></li>
+  
+    <li><a href="/tags/html5/">html5</a><small>3</small></li>
+  
+    <li><a href="/tags/nodejs包管理器/">nodejs包管理器</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>1</small></li>
+  
+    <li><a href="/tags/ui-design/">ui design</a><small>1</small></li>
+  
+    <li><a href="/tags/wap/">wap</a><small>2</small></li>
+  
+    <li><a href="/tags/原型链/">原型链</a><small>1</small></li>
+  
+    <li><a href="/tags/团队管理/">团队管理</a><small>1</small></li>
+  
+    <li><a href="/tags/字符串/">字符串</a><small>1</small></li>
+  
+    <li><a href="/tags/性能优化/">性能优化</a><small>1</small></li>
+  
+    <li><a href="/tags/总结/">总结</a><small>1</small></li>
+  
+    <li><a href="/tags/闭包/">闭包</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer><div id="footer" >
+	
+  <div class="outer">
+    <div id="footer-info" class="inner">
+		<nav class="footer-nav">
+			<ul>
+				
+				<li><a href="/">首页</a></li>
+				
+				<li><a href="/archives">归档</a></li>
+				
+				<li><a href="/linkurl">工具链接</a></li>
+				
+				<li><a href="/about">关于我</a></li>
+				
+			</ul>
+		</nav>	
+    </div>
+  </div>
+</div>
+<div class="footer-bottom"><p class="inner">&copy; 2018 Flyer&nbsp;&nbsp;&nbsp;&nbsp;Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p></div>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fff696ce447973fff9b0046bef6fb820";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</footer>
+  <script src="/js/jquery-2.1.0.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  //back to top
+  function backToTop(){
+    var buttonHTML = $("<a href=\"#top\" id=\"back-top\">" + "<span>Back to Top</span></a>");
+    buttonHTML.appendTo($("body"));
+    var buttonToTop = $("#back-top");
+    // hide #back-top first
+    buttonToTop.hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                buttonToTop.fadeIn();
+            } else {
+                buttonToTop.fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        buttonToTop.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  }
+  backToTop();
+
+  });
+
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

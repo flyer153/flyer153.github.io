@@ -1,0 +1,267 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>详解javascript闭包 | Flyer&#39;s blog</title>
+  <meta name="author" content="Flyer">
+  
+  <meta name="description" content="定义：函数嵌套函数，内部函数可以引用外部函数的参数和变量，参数和变量不会被垃圾回收机制所收回
+1234567891011121314151617181920212223242526272829  function aaa(a)&amp;#123;    //a,b都要在内部函数中被引用，所以不会被垃圾回收机制收回。         var b = 5;      function bbb()&amp;#123;            alert(a);             alert(b);        &amp;#125;   &amp;#125;    aaa();       //JS中的垃圾回收机制   function aaa()&amp;#123;    var a = 1;    &amp;#125;        aaa();    //当函数执行完毕后，变量a就会被垃圾回收机制收回。        function aaa()&amp;#123;        var a = 5;        function bbb()&amp;#123;            alert(a);        &amp;#125;        return bbb;    &amp;#125;        var c = aaa();//a已经执行完毕，c代表的就是bbb这个函数    c();//c执行的话变量其实并没有收回。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="详解javascript闭包"/>
+  <meta property="og:site_name" content="Flyer&#39;s blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Flyer&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header"><div class="inner">
+<div class="alignleft">
+  <h1><a href="/">Flyer&#39;s blog</a></h1>
+  <h2>Fun Loving Youth En Route to Success</h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/linkurl">工具链接</a></li>
+    
+      <li><a href="/about">关于我</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+</div>
+
+</header>
+  <div ui-butterbar="" class="butterbar active"><span class="bar"></span></div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-12-30T10:11:13.000Z"><a href="/2014/12/30/closure/">2014-12-30</a></time>
+      
+      
+  
+    <h1 class="title">详解javascript闭包</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>定义：函数嵌套函数，内部函数可以引用外部函数的参数和变量，参数和变量不会被垃圾回收机制所收回</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">aaa</span>(<span class="params">a</span>)</span>&#123;  </div><div class="line">  <span class="comment">//a,b都要在内部函数中被引用，所以不会被垃圾回收机制收回。   </span></div><div class="line">      <span class="keyword">var</span> b = <span class="number">5</span>;  </div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bbb</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">          alert(a);  </div><div class="line">           alert(b);  </div><div class="line">      &#125;  </div><div class="line"> &#125;  </div><div class="line">  aaa();  </div><div class="line">    </div><div class="line"> <span class="comment">//JS中的垃圾回收机制  </span></div><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">aaa</span>(<span class="params"></span>)</span>&#123; </div><div class="line">   <span class="keyword">var</span> a = <span class="number">1</span>;    </div><div class="line">&#125;  </div><div class="line">    </div><div class="line">  aaa();  </div><div class="line">  <span class="comment">//当函数执行完毕后，变量a就会被垃圾回收机制收回。  </span></div><div class="line">    </div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">aaa</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">      <span class="keyword">var</span> a = <span class="number">5</span>;  </div><div class="line">      <span class="function"><span class="keyword">function</span> <span class="title">bbb</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">          alert(a);  </div><div class="line">      &#125;  </div><div class="line">      <span class="keyword">return</span> bbb;  </div><div class="line">  &#125;  </div><div class="line">    </div><div class="line">  <span class="keyword">var</span> c = aaa();<span class="comment">//a已经执行完毕，c代表的就是bbb这个函数  </span></div><div class="line">  c();<span class="comment">//c执行的话变量其实并没有收回。</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>好处</p>
+<p>1.希望一个变量长期驻扎在内存当中，例子见上<br>2.避免全局变量的污染<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;  </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">aaa</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">    a++;  </div><div class="line">    alert(a);  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="comment">//aaa();  //2  </span></div><div class="line"><span class="comment">//aaa();  //3  </span></div><div class="line"><span class="comment">//alert(a);  </span></div><div class="line"><span class="comment">//由于a是一个全局变量，所以在外部是能被访问到的。为了提高性能，尽量避免出现全局变量。  </span></div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">aaa</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">    <span class="keyword">var</span> a = <span class="number">1</span>;  </div><div class="line">    a++;  </div><div class="line">    alert(a);  </div><div class="line">&#125;  </div><div class="line">aaa();  <span class="comment">//2  </span></div><div class="line">aaa();  <span class="comment">//2  </span></div><div class="line">之所以弹出两次<span class="number">2</span>，是因为当每一次调用时，代码都执行了一次，这样的话a就不会继续累加了。  </div><div class="line">如何做到既让a是一个局部变量，又要让a累加？这就是闭包所能做到的。  </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">aaa</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">    <span class="keyword">var</span> a = <span class="number">1</span>;  </div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">//这样就构成了一个函数嵌套函数的关系，</span></div><div class="line">    而变量a相对于内部函数是可以被找到的，</div><div class="line">    而且不受外部执行函数的影响，</div><div class="line">    当它执行完毕后，函数依然可以调用函数a的变量，而且还会累加。  </div><div class="line">        a++;  </div><div class="line">        alert(a);  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">var</span> b = aaa();  </div><div class="line">  </div><div class="line">b();  <span class="comment">//2  </span></div><div class="line">b();  <span class="comment">//3  </span></div><div class="line">alert(a);<span class="comment">//此时外部引用a就访问不到了。因为它是一个局部变量。  </span></div><div class="line">  </div><div class="line">将函数声明改成函数表达式，  </div><div class="line"><span class="keyword">var</span> aaa = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//将一个匿名函数赋给变量aaa，这样函数运行时就会执行一次，  </span></div><div class="line">此时变量aaa就是外部函数执行完毕的返回值。  </div><div class="line">  </div><div class="line">    <span class="keyword">var</span> a = <span class="number">1</span>;  </div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">        a++;  </div><div class="line">        alert(a);  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">&#125;)();  </div><div class="line">aaa();  <span class="comment">//2  </span></div><div class="line">aaa();  <span class="comment">//3</span></div></pre></td></tr></table></figure></p>
+<p>通常将这种方式叫做代码模块化，防止全局变量的污染。 </p>
+<p>3.私有成员的存在<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> aaa = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">  </div><div class="line">    <span class="keyword">var</span> a = <span class="number">1</span>;  <span class="comment">//局部变量，相对于下面私有方法是全局的  </span></div><div class="line">      </div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bbb</span>(<span class="params"></span>)</span>&#123;  <span class="comment">//私有方法  </span></div><div class="line">        a++;  </div><div class="line">        alert(a);  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">ccc</span>(<span class="params"></span>)</span>&#123;<span class="comment">//私有方法  </span></div><div class="line">        a++;  </div><div class="line">        alert(a);  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="keyword">return</span> &#123;<span class="comment">//返回一个json的结构  </span></div><div class="line">          </div><div class="line">        b : bbb,  </div><div class="line">        <span class="attr">c</span> : ccc  </div><div class="line">          </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">&#125;)();  </div><div class="line">  </div><div class="line">  </div><div class="line">aaa.b();  <span class="comment">//2  </span></div><div class="line">aaa.c();  <span class="comment">//3  </span></div><div class="line">  </div><div class="line"><span class="comment">//alert(a); undefined  </span></div><div class="line"><span class="comment">//alert(bbb);undefined  </span></div><div class="line"><span class="comment">//alert(ccc);undefined</span></div></pre></td></tr></table></figure></p>
+<p>应用<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Examples<span class="tag">&lt;/<span class="name">title</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"css/style.css"</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript">  </span></div><div class="line"><span class="built_in">window</span>.onload=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">    <span class="keyword">var</span> aLi = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'li'</span>);  </div><div class="line">    <span class="comment">/*    </span></div><div class="line">    for (var i = 0; i &lt; aLi.length; i++) &#123;  </div><div class="line">        aLi[i].onclick = function()&#123;//当点击时for循环已经结束了，所以每次点击都是3  </div><div class="line">            alert(i);  </div><div class="line">        &#125;  </div><div class="line">    &#125;;*/  </div><div class="line"><span class="comment">//方法1 利用闭包的形式将值0123传进去，让它永远存在内存中，需要调用时直接来用  </span></div><div class="line">    <span class="comment">/*for (var i = 0; i &lt; aLi.length; i++) &#123;  </span></div><div class="line">        (function(i)&#123;  </div><div class="line">            aLi[i].onclick = function()&#123;  </div><div class="line">                alert(i);  </div><div class="line">            &#125;  </div><div class="line">        &#125;)(i);  </div><div class="line">          </div><div class="line">    &#125;;*/  </div><div class="line">  </div><div class="line"><span class="comment">//当点击时，已经执行完毕，然后接着return一个返回值，返回一个匿名函数，  </span></div><div class="line">  </div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; aLi.length; i++) &#123;  </div><div class="line">  </div><div class="line">            aLi[i].onclick = (<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123; <span class="comment">//i存在在内存中  </span></div><div class="line">                <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">                    alert(i);<span class="comment">//此处调用的i是存在在内存中的i  </span></div><div class="line">                &#125;  </div><div class="line">            &#125;)(i);  </div><div class="line">          </div><div class="line">    &#125;;  </div><div class="line">&#125;  </div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>111<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>222<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>333<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>444<span class="tag">&lt;/<span class="name">li</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p> 闭包需要注意的地方:在ie下会引发内存泄露。<br> <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"> <span class="meta">&lt;!DOCTYPE html&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Examples<span class="tag">&lt;/<span class="name">title</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"css/style.css"</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript">  </span></div><div class="line"><span class="comment">/*window.onload = function()&#123;  </span></div><div class="line">    var oDiv = document.getElementById('div1');  </div><div class="line">      </div><div class="line">    oDiv.onclick = function()&#123;  </div><div class="line">        alert(oDiv.id);  </div><div class="line">    &#125;;  </div><div class="line">      </div><div class="line">    window.onunload = function()&#123; //页面出来的时候把事件给取消掉  </div><div class="line">        oDiv.onclick = null;  </div><div class="line">    &#125;;  </div><div class="line">      </div><div class="line">&#125;;*/  </div><div class="line">  </div><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">    <span class="keyword">var</span> oDiv = <span class="built_in">document</span>.getElementById(<span class="string">'div1'</span>);  </div><div class="line">      </div><div class="line">    <span class="keyword">var</span> id = oDiv.id; <span class="comment">//提前赋给一个变量  </span></div><div class="line">      </div><div class="line">    oDiv.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">        alert(id);<span class="comment">//在里面去调用  </span></div><div class="line">    &#125;;  </div><div class="line">      </div><div class="line">    oDiv = <span class="literal">null</span>; <span class="comment">//接着让其为空  </span></div><div class="line">      </div><div class="line">&#125;;  </div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span>  </div><div class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div1"</span>&gt;</span>aaa<span class="tag">&lt;/<span class="name">div</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+  </div>
+  <div class="article-more-link">
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/javascript/">javascript</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/闭包/">闭包</a>
+  </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+</article>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Buscar">
+    <input type="hidden" name="q" value="site:www.iciniao.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categorías</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Git/">Git</a><small>1</small></li>
+  
+    <li><a href="/categories/design/">design</a><small>1</small></li>
+  
+    <li><a href="/categories/html5-css3/">html5+css3</a><small>4</small></li>
+  
+    <li><a href="/categories/javascript/">javascript</a><small>4</small></li>
+  
+    <li><a href="/categories/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/categories/other/">other</a><small>1</small></li>
+  
+    <li><a href="/categories/wap-dev/">wap dev</a><small>2</small></li>
+  
+    <li><a href="/categories/工具/">工具</a><small>2</small></li>
+  
+    <li><a href="/categories/移动端H5/">移动端H5</a><small>1</small></li>
+  
+    <li><a href="/categories/管理/">管理</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Etiquetas</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Git/">Git</a><small>1</small></li>
+  
+    <li><a href="/tags/apply-call/">apply call</a><small>1</small></li>
+  
+    <li><a href="/tags/css3/">css3</a><small>1</small></li>
+  
+    <li><a href="/tags/hg/">hg</a><small>1</small></li>
+  
+    <li><a href="/tags/html5/">html5</a><small>3</small></li>
+  
+    <li><a href="/tags/nodejs包管理器/">nodejs包管理器</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>1</small></li>
+  
+    <li><a href="/tags/ui-design/">ui design</a><small>1</small></li>
+  
+    <li><a href="/tags/wap/">wap</a><small>2</small></li>
+  
+    <li><a href="/tags/原型链/">原型链</a><small>1</small></li>
+  
+    <li><a href="/tags/团队管理/">团队管理</a><small>1</small></li>
+  
+    <li><a href="/tags/字符串/">字符串</a><small>1</small></li>
+  
+    <li><a href="/tags/性能优化/">性能优化</a><small>1</small></li>
+  
+    <li><a href="/tags/总结/">总结</a><small>1</small></li>
+  
+    <li><a href="/tags/闭包/">闭包</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer><div id="footer" >
+	
+  <div class="outer">
+    <div id="footer-info" class="inner">
+		<nav class="footer-nav">
+			<ul>
+				
+				<li><a href="/">首页</a></li>
+				
+				<li><a href="/archives">归档</a></li>
+				
+				<li><a href="/linkurl">工具链接</a></li>
+				
+				<li><a href="/about">关于我</a></li>
+				
+			</ul>
+		</nav>	
+    </div>
+  </div>
+</div>
+<div class="footer-bottom"><p class="inner">&copy; 2018 Flyer&nbsp;&nbsp;&nbsp;&nbsp;Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p></div>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fff696ce447973fff9b0046bef6fb820";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</footer>
+  <script src="/js/jquery-2.1.0.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  //back to top
+  function backToTop(){
+    var buttonHTML = $("<a href=\"#top\" id=\"back-top\">" + "<span>Back to Top</span></a>");
+    buttonHTML.appendTo($("body"));
+    var buttonToTop = $("#back-top");
+    // hide #back-top first
+    buttonToTop.hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                buttonToTop.fadeIn();
+            } else {
+                buttonToTop.fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        buttonToTop.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  }
+  backToTop();
+
+  });
+
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>html编辑API | Flyer&#39;s blog</title>
+  <meta name="author" content="Flyer">
+  
+  <meta name="description" content="这一章基本看完了，还需要找时间好好消化，目前各浏览器对这些方法的支持还没统一。
+Range对象和Selection对象1var range = document.createRange();
+每一个Range都有一个selection对象,代表用户用鼠标选中的区域12var selection = window.getSelection();   var selection = document.getSelection();
+可以通过getRangeAt()获取某个Range对象1var range = document.getSelection().getRangAt(0);
+eg:123456789101112131415161718192021&amp;lt;script&amp;gt; function rangeTest()&amp;#123;     var html,     showRangeDiv = document.getElementById(&quot;showRange&quot;),     selection = document.getSelection();     if(selection.rangeCount &amp;gt; 0)&amp;#123;        html = &quot;选取了&quot;+selection.rangeCount+&quot;段内容&quot;;        for (var i = 0; i &amp;lt; selection.rangeCount; i++) &amp;#123;            var range =selection.getRangeAt(i);            html+=&quot;第&quot;+(i+1)+&quot;段的内容为:&quot;+range;        &amp;#125;        showRangeDiv.innerHTML = html;     &amp;#125;   &amp;#125;&amp;lt;/script&amp;gt;  Selection对象与Range对象使用示例&amp;lt;input type=&quot;button&quot; value=&quot;点击我&quot; onclick=&quot;rangeTest()&quot;/&amp;gt;&amp;lt;div id=&quot;showRange&quot;/&amp;gt;">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="html编辑API"/>
+  <meta property="og:site_name" content="Flyer&#39;s blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Flyer&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header"><div class="inner">
+<div class="alignleft">
+  <h1><a href="/">Flyer&#39;s blog</a></h1>
+  <h2>Fun Loving Youth En Route to Success</h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/linkurl">工具链接</a></li>
+    
+      <li><a href="/about">关于我</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+</div>
+
+</header>
+  <div ui-butterbar="" class="butterbar active"><span class="bar"></span></div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-12-01T08:10:43.000Z"><a href="/2014/12/01/htmlEditAPI/">2014-12-01</a></time>
+      
+      
+  
+    <h1 class="title">html编辑API</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>这一章基本看完了，还需要找时间好好消化，目前各浏览器对这些方法的支持还没统一。</p>
+<h3 id="Range对象和Selection对象"><a href="#Range对象和Selection对象" class="headerlink" title="Range对象和Selection对象"></a>Range对象和Selection对象</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> range = <span class="built_in">document</span>.createRange();</div></pre></td></tr></table></figure>
+<p>每一个Range都有一个selection对象,代表用户用鼠标选中的区域<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> selection = <span class="built_in">window</span>.getSelection();   </div><div class="line"><span class="keyword">var</span> selection = <span class="built_in">document</span>.getSelection();</div></pre></td></tr></table></figure></p>
+<p>可以通过getRangeAt()获取某个Range对象<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> range = <span class="built_in">document</span>.getSelection().getRangAt(<span class="number">0</span>);</div></pre></td></tr></table></figure></p>
+<p>eg:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"> </span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">rangeTest</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     <span class="keyword">var</span> html,</div><div class="line">     showRangeDiv = <span class="built_in">document</span>.getElementById(<span class="string">"showRange"</span>),</div><div class="line">     selection = <span class="built_in">document</span>.getSelection();</div><div class="line">     <span class="keyword">if</span>(selection.rangeCount &gt; <span class="number">0</span>)&#123;</div><div class="line">        html = <span class="string">"选取了"</span>+selection.rangeCount+<span class="string">"段内容"</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; selection.rangeCount; i++) &#123;</div><div class="line">            <span class="keyword">var</span> range =selection.getRangeAt(i);</div><div class="line">            html+=<span class="string">"第"</span>+(i+<span class="number">1</span>)+<span class="string">"段的内容为:"</span>+range;</div><div class="line"></div><div class="line"></div><div class="line">        &#125;</div><div class="line">        showRangeDiv.innerHTML = html;</div><div class="line"></div><div class="line">     &#125;   </div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span>  </div><div class="line">Selection对象与Range对象使用示例</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"点击我"</span> <span class="attr">onclick</span>=<span class="string">"rangeTest()"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"showRange"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>1.selectNode           rangeObj.selectNode(node);<br>2.selectNodeContents   rangeObj.selectNodeContents(node);<br>3.deleteContents       rangeObj.deleteContents();</p>
+<p>eg:使用Range对象删除元素或元素中的内容<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">deleteRangeContents</span>(<span class="params">onlyContent</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById (<span class="string">"div"</span>);</div><div class="line">    <span class="keyword">var</span> rangeObj = <span class="built_in">document</span>.createRange();</div><div class="line">    <span class="keyword">if</span> (onlyContent) &#123;</div><div class="line">         rangeObj.selectNodeContents (div);</div><div class="line">     &#125; <span class="keyword">else</span> &#123;</div><div class="line">        rangeObj.selectNode (div);</div><div class="line">     &#125;</div><div class="line">    rangeObj.deleteContents();</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div"</span> <span class="attr">style</span>=<span class="string">"background-color:#e0a0b0; width:300px; height:50px;"</span>&gt;</span>元素中的内容<span class="tag">&lt;/<span class="name">div</span>&gt;</span>    </div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"deleteRangeContents(true);"</span>&gt;</span>删除内容<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"deleteRangeContents(false);"</span>&gt;</span>删除元素<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>1.setStart           rangeObj.setStart(node, offsetInsideNode);<br>2.setEnd             rangeObj.setEnd(node, offsetInsideNode);<br>3.setStartBefore     rangeObj.setStartBefore(node);<br>4.setStartAfter      rangeObj.setStartAfter(node);<br>5.setEndAfter        rangeObj.setEndAfter(node);<br>6.setEndBefore       rangeObj.setEndBefore(node);</p>
+<p>eg:使用Range对象从一个元素中的文字节点中删除文字 使用Range对象删除元素<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">DeleteChar</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById (<span class="string">"myDiv"</span>);</div><div class="line">    <span class="keyword">var</span> textNode = div.firstChild;</div><div class="line">    <span class="keyword">var</span> rangeObj = <span class="built_in">document</span>.createRange ();</div><div class="line">    rangeObj.setStart (textNode,<span class="number">2</span>);</div><div class="line">    rangeObj.setEnd (textNode,<span class="number">10</span>);</div><div class="line">    rangeObj.deleteContents ();</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">DeleteFirstRow</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> table = <span class="built_in">document</span>.getElementById (<span class="string">"myTable"</span>);</div><div class="line">    <span class="keyword">if</span> (table.rows.length &gt; <span class="number">0</span>) </div><div class="line">    &#123;</div><div class="line">        <span class="keyword">var</span> row = table.rows[<span class="number">0</span>];</div><div class="line">        <span class="keyword">var</span> rangeObj = <span class="built_in">document</span>.createRange ();</div><div class="line">        rangeObj.setStartBefore (row);</div><div class="line">        rangeObj.setEndAfter (row);</div><div class="line">        rangeObj.deleteContents ();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"myDiv"</span> <span class="attr">style</span>=<span class="string">"color:red"</span>&gt;</span>这段文字中第三个文字到第十个文字将被删除。<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"DeleteChar ()"</span>&gt;</span>删除文字<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">id</span>=<span class="string">"myTable"</span> <span class="attr">border</span>=<span class="string">"1"</span> <span class="attr">cellspacing</span>=<span class="string">"0"</span> <span class="attr">cellpadding</span>=<span class="string">"0"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>第一行第一列<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>第一行第二列<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>第二行第一列<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>第二行第二列<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"DeleteFirstRow ()"</span>&gt;</span>删除第一行<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>1.cloneRange                  rangeObj.cloneRange();<br>2.cloneContents               rangeObj.cloneContents();<br>3.extractContents             rangeObj.extractContents();<br>4.createContexttualFragment   rangeObj.createContexttualFragment(htmlTxt);<br>5.insertNode                  rangeObj.insertNode(node);<br>6.compareBoundaryPoints       RangeObj.compareBoundaryPoints(type,rangeToCompare);<br>7.compareNode                 RangeObj.compareNode(nodeToCompare)进行位置比较的节点(chrome支持)<br>8.intersectsNode              RangeObj.intersectsNode(nodeToCheck)<br>9.comparePoint                RangeObj.comparePoint(nodeToCompare,offsetInsideNode)<br>10.isPointInRange             RangeObj.comparePoint(nodeToCheck,offsetInsideNode)<br>11.collapse                   RangeObj.collapse(toStart)<br>12.detach                     RangeObj.detach()  释放range对象</p>
+<p>###Selection对象的方法<br>1.addRange           selection.addRange(rangeToAdd)<br>2.removeAllRange     selection.removeAllRange()<br>3.removeRange        selection.removeRange(rangeToRemove) (ie9和firefox)<br>4.collapse           selection.collapse(parentNode,offsetInsideParent) 将选取范围的起点和终点移动到一个指定位置。<br>5.collapseToStart    selection.collapseToStart() (ie9和firefox)<br>6.collapseToEnd      selection.collapseToEnd() (ie9和firefox)<br>7.deleteFromDocument selection.deleteFromDocument() 将选取的内容删除<br>8.extend             selection.extend(focusNode,focusOffset)<br>9.selectAllChildren  selection.selectAllChildren(element) 取消选取的内容<br>10.toString          selection.toString()  获取选取范围内的全部内容</p>
+<p>###命令<br>1.execCommand              document.execCommand(commandIdentifier,userInterface,value) 区分大小写的字符串、boolean类型的参数、参数值<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">SetToBold</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">document</span>.execCommand (<span class="string">'bold'</span>, <span class="literal">false</span>, <span class="literal">null</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>2.queryCommandSupported   document.queryCommandSupported(commandIdentifier)  查询是否运行某个命令 返回一个boolean值  true代表浏览器能运行该命令 flase否<br>3.queryCommandState       document.queryCommandState(commandIdentifier) 判断当前命令状态  返回一个boolean值  true代表该命令状态为true flase否<br>4.queryCommandIndeterm    document.queryCommandIndeterm(commandIdentifier) 命令无法确认状态  返回一个boolean值  true代表无法确定 （ie6以上版本均支持）<br>4.queryCommandEnabled    document.queryCommandEnabled(commandIdentifier) 命令是否处于有效状态  返回一个boolean值  true代表有效<br>5.queryCommandValue    document.queryCommandValue(commandIdentifier) 用于鼠标选取内容的某个属性值  返回用户选取的命令值，eg：fontName、fontColor</p>
+
+      
+    </div>
+    
+  </div>
+  <div class="article-more-link">
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/html5-css3/">html5+css3</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/html5/">html5</a>
+  </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+</article>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Buscar">
+    <input type="hidden" name="q" value="site:www.iciniao.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categorías</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Git/">Git</a><small>1</small></li>
+  
+    <li><a href="/categories/design/">design</a><small>1</small></li>
+  
+    <li><a href="/categories/html5-css3/">html5+css3</a><small>4</small></li>
+  
+    <li><a href="/categories/javascript/">javascript</a><small>4</small></li>
+  
+    <li><a href="/categories/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/categories/other/">other</a><small>1</small></li>
+  
+    <li><a href="/categories/wap-dev/">wap dev</a><small>2</small></li>
+  
+    <li><a href="/categories/工具/">工具</a><small>2</small></li>
+  
+    <li><a href="/categories/移动端H5/">移动端H5</a><small>1</small></li>
+  
+    <li><a href="/categories/管理/">管理</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Etiquetas</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Git/">Git</a><small>1</small></li>
+  
+    <li><a href="/tags/apply-call/">apply call</a><small>1</small></li>
+  
+    <li><a href="/tags/css3/">css3</a><small>1</small></li>
+  
+    <li><a href="/tags/hg/">hg</a><small>1</small></li>
+  
+    <li><a href="/tags/html5/">html5</a><small>3</small></li>
+  
+    <li><a href="/tags/nodejs包管理器/">nodejs包管理器</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>1</small></li>
+  
+    <li><a href="/tags/ui-design/">ui design</a><small>1</small></li>
+  
+    <li><a href="/tags/wap/">wap</a><small>2</small></li>
+  
+    <li><a href="/tags/原型链/">原型链</a><small>1</small></li>
+  
+    <li><a href="/tags/团队管理/">团队管理</a><small>1</small></li>
+  
+    <li><a href="/tags/字符串/">字符串</a><small>1</small></li>
+  
+    <li><a href="/tags/性能优化/">性能优化</a><small>1</small></li>
+  
+    <li><a href="/tags/总结/">总结</a><small>1</small></li>
+  
+    <li><a href="/tags/闭包/">闭包</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer><div id="footer" >
+	
+  <div class="outer">
+    <div id="footer-info" class="inner">
+		<nav class="footer-nav">
+			<ul>
+				
+				<li><a href="/">首页</a></li>
+				
+				<li><a href="/archives">归档</a></li>
+				
+				<li><a href="/linkurl">工具链接</a></li>
+				
+				<li><a href="/about">关于我</a></li>
+				
+			</ul>
+		</nav>	
+    </div>
+  </div>
+</div>
+<div class="footer-bottom"><p class="inner">&copy; 2018 Flyer&nbsp;&nbsp;&nbsp;&nbsp;Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p></div>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fff696ce447973fff9b0046bef6fb820";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</footer>
+  <script src="/js/jquery-2.1.0.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  //back to top
+  function backToTop(){
+    var buttonHTML = $("<a href=\"#top\" id=\"back-top\">" + "<span>Back to Top</span></a>");
+    buttonHTML.appendTo($("body"));
+    var buttonToTop = $("#back-top");
+    // hide #back-top first
+    buttonToTop.hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                buttonToTop.fadeIn();
+            } else {
+                buttonToTop.fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        buttonToTop.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  }
+  backToTop();
+
+  });
+
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

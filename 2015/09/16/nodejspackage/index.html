@@ -1,0 +1,318 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>node.js包管理器 | Flyer&#39;s blog</title>
+  <meta name="author" content="Flyer">
+  
+  <meta name="description" content="使用 npm 安装包的􏲒􏲣格式为:npm [install/i] [package_name]
+eg: 
+npm install express 或 npm i express
+本地模式和全局模式􏳕本地模式: npm install􏲒􏲣 
+全局模式: npm [install/i] -g [package_name]
+eg:
+npm install -g supervisor
+| 模式 | 可通过require使用 | 注册PATH || 本地 | yes | no || 全局 | no | yes |
+使用场景：􏳈本地模式：将某个包作为工程运行时的一部分全局模式：要在􏲒􏲣命令行下使用
+创建全局链接： 
+npm link(windows不支持)
+作用：把全局包当本地包使用(在本地包和全局包之间创建符号链接,因为本地包不支持require)
+eg:
+    npm install -g express(全局模式)
+在工程目录运行:
+    npm link express 
+    ./node_modules/express -&amp;gt; /usr/local/lib/mode_modules/express
+在mode_modules子目录可以看到一个指向安装到全局的包的符号链接
+同时也可以将本地包当做全局使用    在包目录(即package.json目录)运行npm link">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="node.js包管理器"/>
+  <meta property="og:site_name" content="Flyer&#39;s blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Flyer&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header"><div class="inner">
+<div class="alignleft">
+  <h1><a href="/">Flyer&#39;s blog</a></h1>
+  <h2>Fun Loving Youth En Route to Success</h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/linkurl">工具链接</a></li>
+    
+      <li><a href="/about">关于我</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+</div>
+
+</header>
+  <div ui-butterbar="" class="butterbar active"><span class="bar"></span></div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-09-16T03:31:08.000Z"><a href="/2015/09/16/nodejspackage/">2015-09-16</a></time>
+      
+      
+  
+    <h1 class="title">node.js包管理器</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>使用 npm 安装包的􏲒􏲣格式为:<br>npm [install/i] [package_name]</p>
+<pre><code>eg: 
+npm install express 或 npm i express
+</code></pre><h3 id="本地模式和全局模式"><a href="#本地模式和全局模式" class="headerlink" title="本地模式和全局模式"></a>本地模式和全局模式</h3><p>􏳕本地模式: npm install􏲒􏲣 </p>
+<p>全局模式: npm [install/i] -g [package_name]</p>
+<pre><code>eg:
+npm install -g supervisor
+</code></pre><p>| 模式 | 可通过require使用 | 注册PATH |<br>| 本地 | yes | no |<br>| 全局 | no | yes |</p>
+<p>使用场景：<br>􏳈本地模式：将某个包作为工程运行时的一部分<br>全局模式：要在􏲒􏲣命令行下使用</p>
+<p>创建全局链接： </p>
+<pre><code>npm link(windows不支持)
+</code></pre><p>作用：把全局包当本地包使用(在本地包和全局包之间创建符号链接,因为本地包不支持require)</p>
+<pre><code>eg:
+    npm install -g express(全局模式)
+在工程目录运行:
+    npm link express 
+    ./node_modules/express -&gt; /usr/local/lib/mode_modules/express
+在mode_modules子目录可以看到一个指向安装到全局的包的符号链接
+</code></pre><p>同时也可以将本地包当做全局使用<br>    在包目录(即package.json目录)运行npm link<br><a id="more"></a></p>
+<h3 id="包的发布"><a href="#包的发布" class="headerlink" title="包的发布"></a>包的发布</h3><pre><code>创建一个 文件夹 ，运行 npm init   (创建一个标准的package.json,按照提示填一些必要的信息)
+创建一个发布账号：npm adduser  
+验证是否取得账号：npm whoami
+在包目录(即package.json目录)运行 npm publish 发布包完成
+更新包：package.json修改version版本信息，重新发布即可
+取消发布： npm unpublish
+</code></pre><h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><p>####命令行调试</p>
+<pre><code>执行：node debug debug.js 启动调试工具
+</code></pre><p>####远程调试</p>
+<pre><code>执行：node --debug[=port] script.js
+     node --debug-brk[=port] script.js
+</code></pre><p>node–debug 启动调试服务器。默认端口：5858<br>修改端口： –debug=1234</p>
+<p>脚本暂停执行等待客户端连接： –debug-brk</p>
+<p>####使用Eclipse调试</p>
+<p>由于平常用sublime比较多，故调试方法略过，有需要可以参考node.js开发指南page48中的详细介绍</p>
+<p>####使用node-inspector调试</p>
+<p>开源的在线调试工具</p>
+<p>安装和使用：</p>
+<pre><code>安装：npm install -g node-inspector
+连接要除错的脚本的调试服务器： node --debug-brk=5858 debug.js
+node-inspector
+在浏览器中打开http://127.0.0.1:8080/debug?port=5858
+
+使用： 就像用chrome中的debug一样使用
+</code></pre>
+      
+    </div>
+    
+  </div>
+  <div class="article-more-link">
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/nodejs/">nodejs</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/nodejs包管理器/">nodejs包管理器</a>
+  </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+</article>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Buscar">
+    <input type="hidden" name="q" value="site:www.iciniao.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categorías</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Git/">Git</a><small>1</small></li>
+  
+    <li><a href="/categories/design/">design</a><small>1</small></li>
+  
+    <li><a href="/categories/html5-css3/">html5+css3</a><small>4</small></li>
+  
+    <li><a href="/categories/javascript/">javascript</a><small>4</small></li>
+  
+    <li><a href="/categories/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/categories/other/">other</a><small>1</small></li>
+  
+    <li><a href="/categories/wap-dev/">wap dev</a><small>2</small></li>
+  
+    <li><a href="/categories/工具/">工具</a><small>2</small></li>
+  
+    <li><a href="/categories/移动端H5/">移动端H5</a><small>1</small></li>
+  
+    <li><a href="/categories/管理/">管理</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Etiquetas</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Git/">Git</a><small>1</small></li>
+  
+    <li><a href="/tags/apply-call/">apply call</a><small>1</small></li>
+  
+    <li><a href="/tags/css3/">css3</a><small>1</small></li>
+  
+    <li><a href="/tags/hg/">hg</a><small>1</small></li>
+  
+    <li><a href="/tags/html5/">html5</a><small>3</small></li>
+  
+    <li><a href="/tags/nodejs包管理器/">nodejs包管理器</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>1</small></li>
+  
+    <li><a href="/tags/ui-design/">ui design</a><small>1</small></li>
+  
+    <li><a href="/tags/wap/">wap</a><small>2</small></li>
+  
+    <li><a href="/tags/原型链/">原型链</a><small>1</small></li>
+  
+    <li><a href="/tags/团队管理/">团队管理</a><small>1</small></li>
+  
+    <li><a href="/tags/字符串/">字符串</a><small>1</small></li>
+  
+    <li><a href="/tags/性能优化/">性能优化</a><small>1</small></li>
+  
+    <li><a href="/tags/总结/">总结</a><small>1</small></li>
+  
+    <li><a href="/tags/闭包/">闭包</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer><div id="footer" >
+	
+  <div class="outer">
+    <div id="footer-info" class="inner">
+		<nav class="footer-nav">
+			<ul>
+				
+				<li><a href="/">首页</a></li>
+				
+				<li><a href="/archives">归档</a></li>
+				
+				<li><a href="/linkurl">工具链接</a></li>
+				
+				<li><a href="/about">关于我</a></li>
+				
+			</ul>
+		</nav>	
+    </div>
+  </div>
+</div>
+<div class="footer-bottom"><p class="inner">&copy; 2018 Flyer&nbsp;&nbsp;&nbsp;&nbsp;Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p></div>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fff696ce447973fff9b0046bef6fb820";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</footer>
+  <script src="/js/jquery-2.1.0.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  //back to top
+  function backToTop(){
+    var buttonHTML = $("<a href=\"#top\" id=\"back-top\">" + "<span>Back to Top</span></a>");
+    buttonHTML.appendTo($("body"));
+    var buttonToTop = $("#back-top");
+    // hide #back-top first
+    buttonToTop.hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                buttonToTop.fadeIn();
+            } else {
+                buttonToTop.fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        buttonToTop.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  }
+  backToTop();
+
+  });
+
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>slice substr substring 区别 | Flyer&#39;s blog</title>
+  <meta name="author" content="Flyer">
+  
+  <meta name="description" content="最近做项目的时候觉得这三个操作字符串的方法特别容易混淆，在这里再记一下。slice()substr()substring()相同点：这三个方法都会返回被操作字符串的一个子字符串，而且也都接受1或2个参数。第1个参数指定子字符串的开始位置第2个参数表示子字符串到哪里结束。不同点：slice()和substring()的第二个参数指定的是子字符串最后一个字符后面的位置。substr()第二个参数指定的则是返回的字符个数。如果没有给这些方法传递第二个参数，则将字符串的长度作为结束位置。与 concat()方法一样，这3个方法也不会修改字符串本身的值——它们只是返回一个基本类型的字符串值，对原始字符串没有影响。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="slice substr substring 区别"/>
+  <meta property="og:site_name" content="Flyer&#39;s blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Flyer&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header"><div class="inner">
+<div class="alignleft">
+  <h1><a href="/">Flyer&#39;s blog</a></h1>
+  <h2>Fun Loving Youth En Route to Success</h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/linkurl">工具链接</a></li>
+    
+      <li><a href="/about">关于我</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+</div>
+
+</header>
+  <div ui-butterbar="" class="butterbar active"><span class="bar"></span></div>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-12-16T04:32:21.000Z"><a href="/2014/12/16/stringTypeManipulation/">2014-12-16</a></time>
+      
+      
+  
+    <h1 class="title">slice substr substring 区别</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>最近做项目的时候觉得这三个操作字符串的方法特别容易混淆，在这里再记一下。<br>slice()<br>substr()<br>substring()<br>相同点：<br>这三个方法都会返回被操作字符串的一个子字符串，而且也都接受1或2个参数。<br>第1个参数指定子字符串的开始位置<br>第2个参数表示子字符串到哪里结束。<br>不同点：<br>slice()和substring()的第二个参数指定的是子字符串最后一个字符后面的位置。<br>substr()第二个参数指定的则是返回的字符个数。<br>如果没有给这些方法传递第二个参数，则将字符串的长度作为结束位置。与<br> concat()方法一样，这3个方法也不会修改字符串本身的值——它们只是返回一个基本类型的字符串值，对原始字符串没有影响。<br><a id="more"></a><br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"> &lt;script type=<span class="string">"text/javascript"</span>&gt;</div><div class="line"><span class="keyword">var</span> stringValue = <span class="string">"hello world"</span>;</div><div class="line">alert(stringValue.slice(<span class="number">3</span>));        <span class="comment">//"lo world"</span></div><div class="line">alert(stringValue.substring(<span class="number">3</span>));    <span class="comment">//"lo world"</span></div><div class="line">alert(stringValue.substr(<span class="number">3</span>));       <span class="comment">//"lo world"</span></div><div class="line">alert(stringValue.slice(<span class="number">3</span>, <span class="number">7</span>));     <span class="comment">//"lo w"</span></div><div class="line">alert(stringValue.substring(<span class="number">3</span>,<span class="number">7</span>));  <span class="comment">//"lo w"</span></div><div class="line">alert(stringValue.substr(<span class="number">3</span>, <span class="number">7</span>));    <span class="comment">//"lo worl"</span></div><div class="line"></div><div class="line">alert(stringValue.slice(<span class="number">-3</span>));         <span class="comment">//"rld"</span></div><div class="line">alert(stringValue.substring(<span class="number">-3</span>));     <span class="comment">//"hello world"</span></div><div class="line">alert(stringValue.substr(<span class="number">-3</span>));        <span class="comment">//"rld" slice()和substr()传递一个负值参数时，它们的行为</span></div><div class="line">相同。这是因为<span class="number">-3</span> 会被转换为<span class="number">8</span>（字符串长度加参数<span class="number">11</span>+(<span class="number">-3</span>)=<span class="number">8</span>），实际上</div><div class="line">相当于调用了slice(<span class="number">8</span>)和substr(<span class="number">8</span>)。</div><div class="line">alert(stringValue.slice(<span class="number">3</span>, <span class="number">-4</span>));      <span class="comment">//"lo w" slice()方法会把第二个参数转换为7，</span></div><div class="line">这就相当于调用了slice(<span class="number">3</span>,<span class="number">7</span>)，因此返回<span class="string">"lo w"</span>。</div><div class="line">alert(stringValue.substring(<span class="number">3</span>, <span class="number">-4</span>));  <span class="comment">//"hel" substring()方法会把第二个参数转换为0，</span></div><div class="line">使调用变成了substring(<span class="number">3</span>,<span class="number">0</span>)，</div><div class="line">而由于这个方法会将较小的数作为开始位置，将较大的数作为结束位置，</div><div class="line">因此最终相当于调用了substring(<span class="number">0</span>,<span class="number">3</span>)</div><div class="line">alert(stringValue.substr(<span class="number">3</span>, <span class="number">-4</span>));     <span class="comment">//"" (empty string)  substr()也会将</span></div><div class="line">第二个参数转换为<span class="number">0</span>，这也就意味着返回包含零个字符的字符串，也就是一个空字符串。</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+  </div>
+  <div class="article-more-link">
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/javascript/">javascript</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/字符串/">字符串</a>
+  </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+</article>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Buscar">
+    <input type="hidden" name="q" value="site:www.iciniao.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categorías</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Git/">Git</a><small>1</small></li>
+  
+    <li><a href="/categories/design/">design</a><small>1</small></li>
+  
+    <li><a href="/categories/html5-css3/">html5+css3</a><small>4</small></li>
+  
+    <li><a href="/categories/javascript/">javascript</a><small>4</small></li>
+  
+    <li><a href="/categories/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/categories/other/">other</a><small>1</small></li>
+  
+    <li><a href="/categories/wap-dev/">wap dev</a><small>2</small></li>
+  
+    <li><a href="/categories/工具/">工具</a><small>2</small></li>
+  
+    <li><a href="/categories/移动端H5/">移动端H5</a><small>1</small></li>
+  
+    <li><a href="/categories/管理/">管理</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Etiquetas</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Git/">Git</a><small>1</small></li>
+  
+    <li><a href="/tags/apply-call/">apply call</a><small>1</small></li>
+  
+    <li><a href="/tags/css3/">css3</a><small>1</small></li>
+  
+    <li><a href="/tags/hg/">hg</a><small>1</small></li>
+  
+    <li><a href="/tags/html5/">html5</a><small>3</small></li>
+  
+    <li><a href="/tags/nodejs包管理器/">nodejs包管理器</a><small>1</small></li>
+  
+    <li><a href="/tags/sublime/">sublime</a><small>1</small></li>
+  
+    <li><a href="/tags/ui-design/">ui design</a><small>1</small></li>
+  
+    <li><a href="/tags/wap/">wap</a><small>2</small></li>
+  
+    <li><a href="/tags/原型链/">原型链</a><small>1</small></li>
+  
+    <li><a href="/tags/团队管理/">团队管理</a><small>1</small></li>
+  
+    <li><a href="/tags/字符串/">字符串</a><small>1</small></li>
+  
+    <li><a href="/tags/性能优化/">性能优化</a><small>1</small></li>
+  
+    <li><a href="/tags/总结/">总结</a><small>1</small></li>
+  
+    <li><a href="/tags/闭包/">闭包</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer><div id="footer" >
+	
+  <div class="outer">
+    <div id="footer-info" class="inner">
+		<nav class="footer-nav">
+			<ul>
+				
+				<li><a href="/">首页</a></li>
+				
+				<li><a href="/archives">归档</a></li>
+				
+				<li><a href="/linkurl">工具链接</a></li>
+				
+				<li><a href="/about">关于我</a></li>
+				
+			</ul>
+		</nav>	
+    </div>
+  </div>
+</div>
+<div class="footer-bottom"><p class="inner">&copy; 2018 Flyer&nbsp;&nbsp;&nbsp;&nbsp;Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p></div>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fff696ce447973fff9b0046bef6fb820";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</footer>
+  <script src="/js/jquery-2.1.0.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  //back to top
+  function backToTop(){
+    var buttonHTML = $("<a href=\"#top\" id=\"back-top\">" + "<span>Back to Top</span></a>");
+    buttonHTML.appendTo($("body"));
+    var buttonToTop = $("#back-top");
+    // hide #back-top first
+    buttonToTop.hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                buttonToTop.fadeIn();
+            } else {
+                buttonToTop.fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        buttonToTop.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  }
+  backToTop();
+
+  });
+
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
