@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Page 2 | Flyer&#39;s blog</title>
+  <title>Página 2 | Flyer&#39;s blog</title>
   <meta name="author" content="Flyer">
   
   
@@ -51,6 +51,52 @@
   <div ui-butterbar="" class="butterbar active"><span class="bar"></span></div>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-04-08T10:27:08.000Z"><a href="/2015/04/08/wapdev-viewport-metatag/">2015-04-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/04/08/wapdev-viewport-metatag/">[译]视窗meta标签(移动开发1)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>原文: <a href="http://davidbcalhoun.com/2010/viewport-metatag/">The Viewport Metatag (Mobile Web Part 1)</a></p>
+<p>如翻译有误，请与我联系。谢谢！</p>
+<p>html代码<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
+<p>##介绍</p>
+<p>这一系列的文章旨在介绍web开发人员基本的移动开发知识，在阅读以下文章时，你必须具备基础得web开发知识。</p>
+<p>##问题</p>
+<p>ok，接下来利用你当前学到的web知识写一个基本的网页，运行在移动端下。基本的html代码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello world!<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello world!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>以上是一个基本的html网页，你在web端用浏览器打开，发现没有任何兼容性问题。但如果你在移动端打开，会<br>发现文字很小，在移动端无法适配。</p>
+<p>这就是本文要讲的第一课：宽度是多么坑爹。这是你在接下来的学习中遇到的无数问题中的第一个，设备的宽度。</p>
+<p>仔细想想，似乎这样显示也有道理：在iphone下用Safari浏览一下页面，因为它是专门为web端而写的文件头，所<br>以，它在iphone下缩小为980以适配iphone的屏幕，这就是为什么网页上的内容可读性差的原因，除非你放大页面。<br>
+      
+    </div>
+    
+  </div>
+  <div class="article-more-link">
+      
+        
+          <div class="alignright">
+            <a href="/2015/04/08/wapdev-viewport-metatag/#more" class="more-link">阅读更多&gt;&gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </div>
+</article>
+
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -374,7 +420,7 @@
 
 <nav id="pagination">
   
-    <a href="/" class="alignleft prev">Prev</a>
+    <a href="/" class="alignleft prev">Anterior</a>
   
   
   <div class="clearfix"></div>
@@ -382,14 +428,14 @@
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="search" name="q" results="0" placeholder="Buscar">
     <input type="hidden" name="q" value="site:www.iciniao.com">
   </form>
 </div>
 
   
 <div class="widget tag">
-  <h3 class="title">Categories</h3>
+  <h3 class="title">Categorías</h3>
   <ul class="entry">
   
     <li><a href="/categories/Git/">Git</a><small>1</small></li>
@@ -408,6 +454,8 @@
   
     <li><a href="/categories/工具/">工具</a><small>2</small></li>
   
+    <li><a href="/categories/意见/">意见</a><small>1</small></li>
+  
     <li><a href="/categories/移动端H5/">移动端H5</a><small>1</small></li>
   
     <li><a href="/categories/管理/">管理</a><small>1</small></li>
@@ -418,7 +466,7 @@
 
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">Etiquetas</h3>
   <ul class="entry">
   
     <li><a href="/tags/Git/">Git</a><small>1</small></li>
@@ -438,6 +486,8 @@
     <li><a href="/tags/ui-design/">ui design</a><small>1</small></li>
   
     <li><a href="/tags/wap/">wap</a><small>2</small></li>
+  
+    <li><a href="/tags/其他/">其他</a><small>1</small></li>
   
     <li><a href="/tags/原型链/">原型链</a><small>1</small></li>
   
